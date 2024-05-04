@@ -1,2 +1,2 @@
-# marzipan-docs-vuepress
-Vuepress client for Marzipan documentation
+# marzipan-docs-client
+Client for Marzipan documentation
