@@ -34,9 +34,9 @@
       </v-col>
     </v-row>
 
-    <v-row justify="center" v-if="data.callToAction?.length">
+    <v-row justify="center" v-if="data.cta?.length">
       <v-btn
-        v-for="(button, i) in data.callToAction"
+        v-for="(button, i) in data.cta"
         :key="i"
         :to="button.url"
         :variant="button.variant || 'flat'"
@@ -61,7 +61,7 @@
       intro: string
       currentFocus: string[]
       contributorInvites: string[]
-      callToAction: Button[]
+      cta: Button[]
     }
   }>()
 </script>

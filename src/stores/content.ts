@@ -50,14 +50,14 @@ interface ContentState {
     title: string
     text: string | string[]
     steps: RoadmapStep[]
-    callToAction?: Button[]
+    cta: Button[]
   }
 
   gettingStarted: {
     intro: string
     currentFocus: string[]
     contributorInvites: string[]
-    callToAction: Button[]
+    cta: Button[]
   }
   philosophy: {
     title: string
@@ -72,7 +72,7 @@ interface ContentState {
 }
 
 // todo: make code snippets
-
+// todo: add content for other pages here
 const initialContent: ContentState = {
   hero: {
     title: 'Marzipan',
@@ -271,7 +271,7 @@ const initialContent: ContentState = {
         status: RoadmapStatus.PlannedNotStarted,
       },
     ],
-    callToAction: [
+    cta: [
       {
         text: 'Explore Roadmap Details',
         url: '/roadmap',
@@ -351,7 +351,7 @@ const initialContent: ContentState = {
       'Writers who make documentation clear and inviting',
       'Early adopters who want to try out Marzipan and point out any flaws, missing features, or bugs',
     ],
-    callToAction: [
+    cta: [
       {
         text: 'Get Involved',
         url: '/contribute',

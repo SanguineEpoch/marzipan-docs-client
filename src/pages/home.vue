@@ -34,7 +34,7 @@
     <RoadmapVisualizer
       :steps="content.roadmap.steps"
       :title="content.roadmap.title"
-      :cta="content.roadmap.callToAction"
+      :cta="content.roadmap.cta"
       short
     />
 

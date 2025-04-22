@@ -1,7 +1,9 @@
 <template>
   <RoadmapVisualizer
+    :title="content.roadmap.title"
     :steps="content.roadmap.steps"
-    :heading="content.roadmap.headline"
+    :heading="content.roadmap.title"
+    :cta="content.roadmap.cta"
   />
 </template>
 
