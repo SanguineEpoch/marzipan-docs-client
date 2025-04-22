@@ -5,13 +5,11 @@
       <p class="text-h6 text-medium-emphasis mb-2">{{ subtitle }}</p>
 
       <div class="my-8">
-        <v-btn
+        <SafeButton
           v-for="(button, i) in cta"
           :key="i"
-          :to="isInternalRoute(button.url) ? button.url : undefined"
-          :href="!isInternalRoute(button.url) ? button.url : undefined"
-          :target="!isInternalRoute(button.url) ? '_blank' : undefined"
-          rel="noopener"
+          :url="button.url"
+          :newTab="!isInternalRoute(button.url)"
           :variant="button.variant || 'flat'"
           :color="button.color || 'primary'"
           class="me-2 mb-4"
@@ -21,7 +19,7 @@
           }}</v-icon>
           {{ button.text }}
           <v-icon v-if="button.appendIcon" end>{{ button.appendIcon }}</v-icon>
-        </v-btn>
+        </SafeButton>
       </div>
     </v-container>
   </v-sheet>

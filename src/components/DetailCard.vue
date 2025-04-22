@@ -31,17 +31,9 @@
     </CodeBlock>
 
     <div v-if="buttons?.length" class="mt-4 d-flex flex-wrap gap-2">
-      <v-btn
-        v-for="(btn, index) in buttons"
-        :key="index"
-        :href="btn.url"
-        :variant="btn.variant || 'flat'"
-        :color="btn.color || 'primary'"
-        :prepend-icon="btn.prependIcon"
-        :append-icon="btn.appendIcon"
-      >
+      <SafeButton v-for="(btn, index) in buttons" :key="index" v-bind="btn">
         {{ btn.text }}
-      </v-btn>
+      </SafeButton>
     </div>
   </v-card>
 </template>

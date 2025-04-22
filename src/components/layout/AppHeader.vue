@@ -6,25 +6,27 @@
           <v-icon>mdi-menu</v-icon>
         </v-btn>
 
-        <v-btn
-          to="/home"
+        <SafeButton
+          url="/home"
           variant="plain"
           class="text-h6 font-weight-bold"
           color="primary"
-          ><span class="mono"> Marzipan{} </span>
-        </v-btn>
+        >
+          <span class="mono"> Marzipan{} </span>
+        </SafeButton>
       </div>
+
       <div>
         <ThemeToggle />
 
-        <v-btn
-          icon
-          href="https://github.com/SanguineEpoch/marzipan"
-          target="_blank"
+        <SafeButton
+          url="https://github.com/SanguineEpoch/marzipan"
           aria-label="GitHub"
+          icon
+          variant="plain"
         >
           <v-icon>mdi-github</v-icon>
-        </v-btn>
+        </SafeButton>
       </div>
     </v-container>
   </v-app-bar>

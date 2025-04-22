@@ -27,6 +27,7 @@ declare module 'vue' {
     RoadmapVisualizer: typeof import('./components/content/RoadmapVisualizer.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SafeButton: typeof import('./components/content/SafeButton.vue')['default']
     SectionHeader: typeof import('./components/content/SectionHeader.vue')['default']
     ThemeToggle: typeof import('./components/ThemeToggle.vue')['default']
     ValueProposition: typeof import('./components/content/ValueProposition.vue')['default']

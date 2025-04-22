@@ -7,17 +7,18 @@
           md="auto"
           class="d-flex justify-center align-center gap-2"
         >
-          <v-btn to="/license" variant="plain" size="small">
+          <SafeButton url="/license" variant="plain" size="small">
             © {{ currentYear }} Marzipan. View License.
-          </v-btn>
-          <v-btn
-            icon="mdi-github"
-            href="https://github.com/SanguineEpoch/marzipan"
-            target="_blank"
-            aria-label="GitHub"
+          </SafeButton>
+
+          <SafeButton
+            url="https://github.com/SanguineEpoch/marzipan"
             variant="plain"
             size="small"
-          />
+            aria-label="GitHub"
+          >
+            <v-icon icon="mdi-github" />
+          </SafeButton>
         </v-col>
       </v-row>
     </v-container>
@@ -25,7 +26,7 @@
 </template>
 
 <script setup lang="ts">
-defineOptions({ name: "AppFooter" });
+  defineOptions({ name: 'AppFooter' })
 
-const currentYear = new Date().getFullYear();
+  const currentYear = new Date().getFullYear()
 </script>

@@ -35,10 +35,10 @@
     </v-row>
 
     <v-row justify="center" v-if="data.cta?.length">
-      <v-btn
+      <SafeButton
         v-for="(button, i) in data.cta"
         :key="i"
-        :to="button.url"
+        :url="button.url"
         :variant="button.variant || 'flat'"
         :color="button.color || 'primary'"
         class="ma-2"
@@ -48,7 +48,7 @@
         }}</v-icon>
         {{ button.text }}
         <v-icon v-if="button.appendIcon" end>{{ button.appendIcon }}</v-icon>
-      </v-btn>
+      </SafeButton>
     </v-row>
   </v-container>
 </template>

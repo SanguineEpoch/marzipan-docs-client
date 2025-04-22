@@ -1,5 +1,5 @@
 <script setup lang="ts">
-defineOptions({ name: "NotFoundPage" });
+  defineOptions({ name: 'NotFoundPage' })
 </script>
 
 <template>
@@ -9,6 +9,8 @@ defineOptions({ name: "NotFoundPage" });
     <p class="text-body-1 mb-6">
       The page you’re looking for doesn’t exist. Maybe you mistyped the URL?
     </p>
-    <v-btn to="/home" color="primary" variant="flat"> Go to Homepage </v-btn>
+    <SafeButton to="/home" color="primary" variant="flat">
+      Go to Homepage
+    </SafeButton>
   </v-container>
 </template>
