@@ -8,29 +8,23 @@
         location="top center"
         transition="scale-transition"
       >
-        <v-btn icon @click="openShareModal('Reddit')">
-          <v-icon>mdi-reddit</v-icon>
-        </v-btn>
-        <v-btn icon @click="openShareModal('Twitter')">
-          <v-icon>mdi-twitter</v-icon>
-        </v-btn>
-        <v-btn icon @click="openShareModal('Bluesky')">
-          <v-icon>mdi-cloud</v-icon>
-        </v-btn>
-        <v-btn icon @click="openShareModal('Message')">
-          <v-icon>mdi-message-text</v-icon>
-        </v-btn>
-        <v-btn icon @click="openShareModal('Copy')">
-          <v-icon>mdi-content-copy</v-icon>
+        <v-btn
+          icon
+          v-for="(platform, i) in sharePlatforms"
+          :key="i"
+          @click="openShareModal(platform.name)"
+          :aria-label="`Share on ${platform.name}`"
+        >
+          <v-icon>{{ platform.icon }}</v-icon>
         </v-btn>
       </v-speed-dial>
     </v-fab>
 
     <v-dialog v-model="dialog" max-width="500">
       <v-card>
-        <v-card-title class="text-h6"
-          >Share to {{ selectedPlatform }}?</v-card-title
-        >
+        <v-card-title class="text-h6">
+          Share to {{ selectedPlatform }}?
+        </v-card-title>
         <v-card-text>
           <div class="my-2">
             <strong>Title:</strong>
@@ -57,17 +51,29 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
   import { ref } from 'vue'
 
   const open = ref(false)
   const dialog = ref(false)
   const selectedPlatform = ref('')
-
   const pageUrl = window.location.href
   const pageTitle = document.title
 
-  function openShareModal(platform) {
+  const sharePlatforms = [
+    { name: 'Reddit', icon: 'mdi-reddit' },
+    { name: 'Twitter', icon: 'mdi-twitter' },
+    { name: 'Bluesky', icon: 'mdi-cloud' },
+    { name: 'Message', icon: 'mdi-message-text' },
+    { name: 'Copy', icon: 'mdi-content-copy' },
+  ]
+
+  function openShareModal(platform: string) {
+    if (platform === 'Copy') {
+      copyToClipboard()
+      return
+    }
+
     selectedPlatform.value = platform
     dialog.value = true
     open.value = false
@@ -77,35 +83,28 @@
     const url = encodeURIComponent(pageUrl)
     const title = encodeURIComponent(pageTitle)
 
-    switch (selectedPlatform.value) {
-      case 'Reddit':
-        window.open(
-          `https://www.reddit.com/submit?url=${url}&title=${title}`,
-          '_blank'
-        )
-        break
-      case 'Twitter':
-        window.open(
-          `https://twitter.com/intent/tweet?url=${url}&text=${title}`,
-          '_blank'
-        )
-        break
-      case 'Bluesky':
-        window.open(
-          `https://bsky.app/intent/compose?text=${title}%20${url}`,
-          '_blank'
-        )
-        break
-      case 'Message':
-        window.open(`sms:?body=${title}%20${pageUrl}`, '_blank')
-        break
-      case 'Copy':
-        navigator.clipboard.writeText(pageUrl)
-        alert('Link copied!')
-        break
+    const handlers: Record<string, string> = {
+      Reddit: `https://www.reddit.com/submit?url=${url}&title=${title}`,
+      Twitter: `https://twitter.com/intent/tweet?url=${url}&text=${title}`,
+      Bluesky: `https://bsky.app/intent/compose?text=${title}%20${url}`,
+      Message: `sms:?body=${title}%20${pageUrl}`,
+    }
+
+    const shareUrl = handlers[selectedPlatform.value]
+    if (shareUrl) {
+      window.open(shareUrl, '_blank')
     }
 
     dialog.value = false
+  }
+
+  async function copyToClipboard() {
+    try {
+      await navigator.clipboard.writeText(pageUrl)
+      alert('Link copied to clipboard!')
+    } catch {
+      prompt('Copy this link manually:', pageUrl)
+    }
   }
 </script>
 
