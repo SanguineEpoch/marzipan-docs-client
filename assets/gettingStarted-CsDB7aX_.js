@@ -1,0 +1,1 @@
+import{_ as e}from"./_plugin-vue_export-helper-DlAUqK2U.js";import{as as o,o as r,q as n}from"./index-BXI-UK9c.js";const c={};function a(s,_){const t=o("GettingStarted",!0);return n(),r(t)}const m=e(c,[["render",a]]);export{m as default};
