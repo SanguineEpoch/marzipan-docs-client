@@ -1,0 +1,5 @@
+node_modules
+dist
+todo.md
+.env
+.DS_Store
